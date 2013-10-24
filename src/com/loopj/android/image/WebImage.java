@@ -49,16 +49,13 @@ public class WebImage implements SmartImage {
             URLConnection conn = new URL(url).openConnection();
             conn.setConnectTimeout(CONNECT_TIMEOUT);
             conn.setReadTimeout(READ_TIMEOUT);
-            
+
             ActivityManager.MemoryInfo memInfo = new ActivityManager.MemoryInfo();
-            int inSample = 1;
-            if(memInfo.lowMemory){
-                inSample = 12;
-            }
-            
+            int inSample = 4;
+
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inSampleSize = inSample;
-            
+
             bitmap = BitmapFactory.decodeStream((InputStream) conn.getContent(), null, options);
         } catch(Exception e) {
             e.printStackTrace();
